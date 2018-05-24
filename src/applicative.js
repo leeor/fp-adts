@@ -57,16 +57,16 @@ Either.prototype.of = function(x) {
 }
 
 
-Maybe.Just(x => x ** 2).ap(Either.Right(3))
+Maybe.Just(x => x ** 2).ap(Maybe.Just(3)).toString()
 
 
-Either.Right(x => x ** 2).ap(Maybe.Just(3))
+Either.Right(x => x ** 2).ap(Either.Right(3)).toString()
 
 
-Either.Left(x => x ** 2).ap(Maybe.Just(3))
+Either.Left(x => x ** 2).ap(Either.Right(3)).toString()
 
 
-Either.Right(x => x ** 2).ap(Maybe.Nothing)
+Maybe.Just(x => x ** 2).ap(Maybe.Nothing).toString()
 
 
 // Power lifting
@@ -77,9 +77,9 @@ liftA(pow(2))(Maybe.Just(5))
 
 const add = x => y => x + y
 const liftA2 = f => x => y => x.map(f).ap(y)
-liftA2(add)(Maybe.Just(3))(Either.Right(5))
+liftA2(add)(Maybe.Just(3))(Maybe.Just(5))
 
-Maybe.Just(3).map(val1 => {
+Either.Right(3).map(val1 => {
   return Either.Right(5).map(val2 => {
     return add(val1)(val2)
   })

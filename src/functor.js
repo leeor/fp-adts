@@ -34,8 +34,8 @@ Maybe.prototype.map = function(f) {
 }
 
 
-Maybe.Just(4).map(x => x ** 2)
-Maybe.Nothing.map(x => x ** 2)
+Maybe.Just(4).map(x => x ** 2).toString()
+Maybe.Nothing.map(x => x ** 2).toString()
 
 
 Either.prototype.map = function(f) {
@@ -47,8 +47,8 @@ Either.prototype.map = function(f) {
 
 
 const mappedLeft = lefty.map(x => x.slice(1))
-mappedLeft
+mappedLeft.toString()
 
 
 const mappedRight = righto.map(x => x.slice(1))
-mappedRight
+mappedRight.toString()

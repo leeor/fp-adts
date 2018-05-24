@@ -72,7 +72,7 @@ Maybe.prototype.chain = function(f) {
 const prop = p => obj => obj && obj[p] ? Maybe.Just(obj[p]) : Maybe.Nothing
 
 
-Maybe.Just({ foo: 'bar' }).map(prop('foo'))
-Maybe.Just({ foo: 'bar' }).chain(prop('foo'))
+Maybe.Just({ foo: 'bar' }).map(prop('foo')).toString()
+Maybe.Just({ foo: 'bar' }).chain(prop('foo')).toString()
 Maybe.Just({ foo: 'bar' }).chain(prop('oof'))
-Maybe.Just([1, 2, 3]).chain(prop(0))
+Maybe.Just([1, 2, 3]).chain(prop(0)).toString()
