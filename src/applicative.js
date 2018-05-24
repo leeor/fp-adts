@@ -71,10 +71,16 @@ Either.Right(x => x ** 2).ap(Maybe.Nothing)
 
 // Power lifting
 const pow = x => y => y ** x
-const liftA = f => x => x.of(f).ap(x)
+const liftA = f => x => x.map(f)
 liftA(pow(2))(Maybe.Just(5))
 
 
 const add = x => y => x + y
-const liftA2 = f => x => y => x.of(f).ap(x).ap(y)
+const liftA2 = f => x => y => x.map(f).ap(y)
 liftA2(add)(Maybe.Just(3))(Either.Right(5))
+
+Maybe.Just(3).map(val1 => {
+  return Either.Right(5).map(val2 => {
+    return add(val1)(val2)
+  })
+})
